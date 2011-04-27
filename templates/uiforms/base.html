@@ -1,0 +1,47 @@
+<html>
+  <head>
+    <title>{% block title %}drchrono UI Forms{% endblock %}</title>
+
+    <!-- <link rel="shortcut icon" href="{{ MEDIA_URL }}img/favicon.png" /> -->
+  
+    <!-- Framework CSS -->  
+    <link rel="stylesheet" href="{{ MEDIA_URL }}css/blueprint/screen.css" type="text/css" media="screen, projection" />  
+    <link rel="stylesheet" href="{{ MEDIA_URL }}css/blueprint/print.css" type="text/css" media="print" />  
+    <!--[if IE]><link rel="stylesheet" href="{{ MEDIA_URL }}css/blueprint/ie.css" type="text/css" media="screen, projection" /><![endif]-->
+    
+    {% block css %}
+    {% endblock %}
+
+    {% comment %}
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.7/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="{{ MEDIA_URL }}js/file.js"></script>
+    {% endcomment %}
+
+    {% block javascript %}
+    {% endblock %}
+    
+  </head>
+
+  <body>
+    <div id="main-container">
+      <h1><a href="{% url index %}">drchrono UI Forms</a></h1>
+      <div id="top-menu" class="span-4">
+        <ul>
+          {% if user.is_authenticated %}
+          <li><a href="{% url dashboard %}">Your Dashboard</a></li>
+          <li><a href="{% url user_logoff %}">Log Off</a></li>
+          {% else %}
+          <li><a href="{% url user_login %}">Login</a></li>
+          <li><a href="{% url user_register %}">Register</a></li>
+          {% endif %}
+        </ul>
+      </div>
+
+      {% block content-area %}
+      {% endblock %}
+      
+    </div>
+  </body>
+
+</html>

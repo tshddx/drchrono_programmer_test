@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content-area %}
+<h2>Login</h2>
+<form method="post" action="">
+  {% csrf_token %}
+  {% if form.errors %}
+  <p><span class="error">Incorrect username or password.</p>
+  {% endif %}
+  <table>
+    <tbody>
+      <tr>
+        <th>{{ form.username.label_tag }}</th>
+        <th>{{ form.username }}</th>
+      </tr>
+      <tr>
+        <th>{{ form.password.label_tag }}</th>
+        <th>{{ form.password }}</th>
+      </tr>
+    </tbody>
+  </table>
+  <p><input type="submit" value="Login"></p>
+  <input type="hidden" value="next" value="{% url index %}">
+</form>
+{% endblock %}
