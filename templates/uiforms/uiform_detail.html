@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ block.super }} | {{ uiform }}{% endblock %}
+
+{% block content-area %}
+<h2>{{ uiform }}</h2>
+<p>Fields:</p>
+<ul>
+  {% for field in uiform.fields %}
+  <li>{{ field }}</li>
+  {% endfor %}
+</ul>
+<p>
+  <a href="{% url uiformfield_new uiform.pk %}" class="button">Add another field</a>
+</p>
+{% endblock %}

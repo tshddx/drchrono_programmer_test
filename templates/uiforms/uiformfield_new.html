@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ block.super }} | {{ uiform }}{% endblock %}
+
+{% block content-area %}
+<h2>New UI Form Field for {{ uiform }}</h2>
+<form method="post" id="" action="">
+  {% csrf_token %}
+  <table>
+    {{ form.as_table }}
+  </table>
+  <p><input type="submit" name="" value="Submit" /></p>
+</form>
+{% endblock %}

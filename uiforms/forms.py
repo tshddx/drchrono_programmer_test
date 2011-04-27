@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
+from uiforms.models import *
 
 class UserRegisterForm(forms.Form):
     first_name = forms.CharField(max_length=128)
@@ -30,3 +31,17 @@ class UserRegisterForm(forms.Form):
         new_user.last_name = self.cleaned_data['last_name']
         new_user.save()
         return new_user
+
+class UIFormFieldForm(forms.ModelForm):
+    class Meta:
+        model = UIFormField
+        exclude = ['ui_form', 'created_at']
+
+    def __init__(self, *args, **kwargs):
+        self.parent_uiform = kwargs.pop('parent_uiform')
+        super(UIFormFieldForm, self).__init__(*args, **kwargs)
+
+    def save(self):
+        uiform_field = super(UIFormFieldForm, self).save(commit=False)
+        uiform_field.ui_form = self.parent_uiform
+        uiform_field.save()

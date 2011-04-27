@@ -7,8 +7,9 @@ from django.contrib.auth.views import login, logout
 from django.contrib.auth import login as userlogin
 from django.contrib.auth import authenticate
 from annoying.decorators import render_to
+from django.views.generic import CreateView
 
-from uiforms.forms import UserRegisterForm
+from uiforms.forms import *
 
 @render_to('index.html')
 def index(request):
@@ -40,4 +41,34 @@ def user_logoff(request):
 def dashboard(request):
     if not request.user.is_authenticated():
         return HttpResponseRedirect(reverse('index'))
-    return {}
+    uiforms = request.user.uiform_set.all()
+    return {'uiforms': uiforms}
+
+@render_to('uiform_detail.html')
+def uiform_detail(request, pk):
+    uiform = request.user.uiform_set.get(pk=pk)
+    return {'uiform': uiform}
+
+# @render_to('uiformfield_new.html')
+# def uiformfield_new(request, pk):
+#     parent_uiform = request.user.uiform_set.get(pk=pk)
+
+class UIFormFieldCreateView(CreateView):
+    context_object_name = 'UI Form Field'
+    template_name = 'uiformfield_new.html'
+    form_class = UIFormFieldForm
+
+    def get_form_kwargs(self):
+        kwargs = super(CreateView, self).get_form_kwargs()
+        parent_uiform = self.request.user.uiform_set.get(pk=self.kwargs['pk'])
+        kwargs['parent_uiform'] = parent_uiform
+        return kwargs
+
+    def get_context_data(self, **kwargs):
+        context = super(CreateView, self).get_context_data(**kwargs)
+        context['uiform'] = self.request.user.uiform_set.get(pk=self.kwargs['pk'])
+        return context
+
+    def get_success_url(self):
+        parent_uiform = self.request.user.uiform_set.get(pk=self.kwargs['pk'])
+        return parent_uiform.get_absolute_url()
