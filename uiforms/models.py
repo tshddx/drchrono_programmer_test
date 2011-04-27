@@ -36,3 +36,11 @@ class UIFormField(models.Model):
 
     def __unicode__(self):
         return self.label
+
+    def as_html(self):
+        if self.field_type == 'b':
+            input_type = 'checkbox'
+        elif self.field_type == 'i':
+            input_type = 'text'
+        return mark_safe('<label for="uiformfield-%s">%s</label><input type="%s" id="uiformfield-%s"/><p class="formHint">%s</p>' %
+                         (self.id, self.label, input_type, self.id, self.description))

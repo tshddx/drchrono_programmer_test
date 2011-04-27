@@ -1,0 +1,14 @@
+body {
+    background-color: #dadada;
+    color: #333;
+    margin-top: 0;
+}
+
+div#main-container {
+    width: 800px;
+    padding: 4px 14px;
+    background-color: #fbfbfb;
+    margin: 0 auto;
+    border-left: 1px solid #bbb;
+    border-right: 1px solid #bbb;
+}

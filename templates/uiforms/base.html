@@ -3,11 +3,15 @@
     <title>{% block title %}drchrono UI Forms{% endblock %}</title>
 
     <!-- <link rel="shortcut icon" href="{{ MEDIA_URL }}img/favicon.png" /> -->
-  
+    
+    {% comment %}
     <!-- Framework CSS -->  
     <link rel="stylesheet" href="{{ MEDIA_URL }}css/blueprint/screen.css" type="text/css" media="screen, projection" />  
     <link rel="stylesheet" href="{{ MEDIA_URL }}css/blueprint/print.css" type="text/css" media="print" />  
     <!--[if IE]><link rel="stylesheet" href="{{ MEDIA_URL }}css/blueprint/ie.css" type="text/css" media="screen, projection" /><![endif]-->
+    {% endcomment %}
+
+    <link rel="stylesheet" href="{{ MEDIA_URL }}css/main.css" type="text/css" media="screen, projection" />
     
     {% block css %}
     {% endblock %}
