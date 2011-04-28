@@ -20,15 +20,21 @@
     <span class="help-text">Anyone will be able to view (but not edit) this UI Form at this URL.</span>
   </p>
   <p class="public-link">http://blah.bad</p>
+  <p>
+    Email this link to a friend:
+    <input type="email" name="email" />
+    <input type="button" name="email-submit" value="Send email" />
+  </p>
 </div>
+<hr />
 <div class="field-list">
-  <h3>Fields:</h3>
+  <p class="fields-intro">This is a live preview of your UI form fields. You can point to each field to edit or delete it, or add another field at the bottom.</p>
   <form method="POST" id="" action="" class="uniForm">
     <fieldset>
       {% for field in uiform.fields %}
       <div class="ctrlHolder uiformfield" id="{{ field.id }}">
         <div class="edit-delete">
-          <a href="#" class="edit-link">edit</a>
+          <a href="{% url uiformfield_edit formpk=uiform.pk fieldpk=field.id %}" class="edit-link">edit</a>
           <a href="#" class="delete-link">delete</a>
         </div>
         {{ field.as_html }}

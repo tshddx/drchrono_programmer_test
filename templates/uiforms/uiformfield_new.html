@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 
-{% block title %}{{ block.super }} | {{ uiform }}{% endblock %}
+{% block title %}{{ block.super }} | {{ uiform }} | {{ title_prefix }} UI Form Field{% endblock %}
 
 {% block content-area %}
-<h2>New UI Form Field for {{ uiform }}</h2>
+<h2>{{ title_prefix }} UI Form Field for {{ uiform }}</h2>
 <form method="post" id="" action="">
   {% csrf_token %}
   <table>

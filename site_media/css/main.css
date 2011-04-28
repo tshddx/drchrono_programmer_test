@@ -67,3 +67,11 @@ form.uniForm, form {
 .uniForm label {
     cursor: auto !important;
 }
+
+hr {
+    height: 4px;
+    color: silver;
+    background-color: #ddd;
+    border: none;
+    margin: 1.25em 0;
+}

@@ -7,7 +7,7 @@ from django.contrib.auth.views import login, logout
 from django.contrib.auth import login as userlogin
 from django.contrib.auth import authenticate
 from annoying.decorators import render_to
-from django.views.generic import CreateView
+from django.views.generic import CreateView, UpdateView
 
 from uiforms.forms import *
 
@@ -67,8 +67,35 @@ class UIFormFieldCreateView(CreateView):
     def get_context_data(self, **kwargs):
         context = super(CreateView, self).get_context_data(**kwargs)
         context['uiform'] = self.request.user.uiform_set.get(pk=self.kwargs['pk'])
+        context['title_prefix'] = "New"
         return context
 
     def get_success_url(self):
         parent_uiform = self.request.user.uiform_set.get(pk=self.kwargs['pk'])
         return parent_uiform.get_absolute_url()
+
+class UIFormFieldUpdateView(UpdateView):
+    context_object_name = 'UI Form Field'
+    template_name = 'uiformfield_new.html'
+    form_class = UIFormFieldForm
+
+    def get_object(self, **kwargs):
+        field = self.request.user.uiform_set.get(pk=self.kwargs['formpk']).fields().get(pk=self.kwargs['fieldpk'])
+        return field
+    
+    def get_form_kwargs(self):
+        kwargs = super(UpdateView, self).get_form_kwargs()
+        parent_uiform = self.request.user.uiform_set.get(pk=self.kwargs['formpk'])
+        kwargs['parent_uiform'] = parent_uiform
+        return kwargs
+
+    def get_context_data(self, **kwargs):
+        context = super(UpdateView, self).get_context_data(**kwargs)
+        context['uiform'] = self.request.user.uiform_set.get(pk=self.kwargs['formpk'])
+        context['title_prefix'] = "Edit"
+        return context
+
+    def get_success_url(self):
+        parent_uiform = self.request.user.uiform_set.get(pk=self.kwargs['formpk'])
+        return parent_uiform.get_absolute_url()
+    
