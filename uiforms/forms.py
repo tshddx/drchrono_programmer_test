@@ -45,3 +45,17 @@ class UIFormFieldForm(forms.ModelForm):
         uiform_field = super(UIFormFieldForm, self).save(commit=False)
         uiform_field.ui_form = self.parent_uiform
         uiform_field.save()
+
+class UIFormForm(forms.ModelForm):
+    class Meta:
+        model = UIForm
+        exclude = ['owner', 'created_at']
+
+    def __init__(self, *args, **kwargs):
+        self.owner = kwargs.pop('owner')
+        super(UIFormForm, self).__init__(*args, **kwargs)
+
+    def save(self):
+        uiform = super(UIFormForm, self).save(commit=False)
+        uiform.owner = self.owner
+        uiform.save()

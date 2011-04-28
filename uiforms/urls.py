@@ -7,6 +7,7 @@ urlpatterns = patterns('uiforms.views',
                        url(r'^logoff$', 'user_logoff', name='user_logoff'),
                        url(r'^dashboard$', 'dashboard', name='dashboard'),
                        url(r'^uiform/(?P<pk>[0-9]*)$', 'uiform_detail', name='uiform_detail'),
+                       url(r'^uiform/new$', UIFormCreateView.as_view(), name='uiform_new'),
                        url(r'^uiform/(?P<pk>[0-9]*)/fields/new$', UIFormFieldCreateView.as_view(), name='uiformfield_new'),
                        url(r'^uiform/(?P<formpk>[0-9]*)/fields/(?P<fieldpk>[0-9]*)$', UIFormFieldUpdateView.as_view(), name='uiformfield_edit'),
 

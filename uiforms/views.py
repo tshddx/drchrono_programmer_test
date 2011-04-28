@@ -10,6 +10,7 @@ from annoying.decorators import render_to
 from django.views.generic import CreateView, UpdateView
 
 from uiforms.forms import *
+from uiforms.models import *
 
 @render_to('index.html')
 def index(request):
@@ -99,3 +100,17 @@ class UIFormFieldUpdateView(UpdateView):
         parent_uiform = self.request.user.uiform_set.get(pk=self.kwargs['formpk'])
         return parent_uiform.get_absolute_url()
     
+class UIFormCreateView(CreateView):
+    context_object_name = 'UI Form'
+    template_name = 'uiform_new.html'
+    # Eek! What a name for a class.
+    form_class = UIFormForm
+    
+    def get_form_kwargs(self):
+        kwargs = super(CreateView, self).get_form_kwargs()
+        owner = self.request.user
+        kwargs['owner'] = owner
+        return kwargs
+
+    def get_success_url(self):
+        return reverse('dashboard')
