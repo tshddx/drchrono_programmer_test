@@ -47,6 +47,10 @@ def dashboard(request):
 @render_to('uiform_detail.html')
 def uiform_detail(request, pk):
     uiform = request.user.uiform_set.get(pk=pk)
+    if request.is_ajax():
+        field = uiform.fields().get(id=request.POST['id'])
+        field.delete()
+        return HttpResponse("success")
     return {'uiform': uiform}
 
 class UIFormFieldCreateView(CreateView):

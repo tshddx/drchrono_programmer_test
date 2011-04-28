@@ -8,6 +8,10 @@
 <link rel="stylesheet" href="{{ MEDIA_URL }}css/uiform_detail.css" type="text/css" media="all" />
 {% endblock %}
 
+{% block javascript %}
+<script type="text/javascript" src="{{ MEDIA_URL }}js/uiform_detail.js"></script>
+{% endblock %}
+
 {% block content-area %}
 <h2>{{ uiform }}</h2>
 <div class="public-link">
@@ -22,10 +26,10 @@
   <form method="POST" id="" action="" class="uniForm">
     <fieldset>
       {% for field in uiform.fields %}
-      <div class="ctrlHolder uiformfield">
+      <div class="ctrlHolder uiformfield" id="{{ field.id }}">
         <div class="edit-delete">
-          <a href="">edit</a>
-          <a href="">delete</a>
+          <a href="#" class="edit-link">edit</a>
+          <a href="#" class="delete-link">delete</a>
         </div>
         {{ field.as_html }}
       </div>
