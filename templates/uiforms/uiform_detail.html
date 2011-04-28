@@ -3,21 +3,24 @@
 {% block title %}{{ block.super }} | {{ uiform }}{% endblock %}
 
 {% block css %}
-<link rel="stylesheet" href="{{ MEDIA_URL }}/uni-form/css/uni-form.css" type="text/css" media="all" />
-<link rel="stylesheet" href="{{ MEDIA_URL }}/uni-form/css/default.uni-form.css" type="text/css" media="all" />
+<link rel="stylesheet" href="{{ MEDIA_URL }}uni-form/css/uni-form.css" type="text/css" media="all" />
+<link rel="stylesheet" href="{{ MEDIA_URL }}uni-form/css/default.uni-form.css" type="text/css" media="all" />
+<link rel="stylesheet" href="{{ MEDIA_URL }}css/uiform_detail.css" type="text/css" media="all" />
 {% endblock %}
 
 {% block content-area %}
 <h2>{{ uiform }}</h2>
-<h3>Fields:</h3>
-<form method="POST" id="" action="" class="uniForm">
-  <fieldset>
-    {% for field in uiform.fields %}
-    <div class="ctrlHolder">{{ field.as_html }}</div>
-    {% endfor %}
-  </fieldset>
-</form>
-<p>
-  <a href="{% url uiformfield_new uiform.pk %}" class="button">Add another field</a>
-</p>
+<div class="field-list">
+  <h3>Fields:</h3>
+  <form method="POST" id="" action="" class="uniForm">
+    <fieldset>
+      {% for field in uiform.fields %}
+      <div class="ctrlHolder">{{ field.as_html }}</div>
+      {% endfor %}
+    </fieldset>
+  </form>
+  <p>
+    <a href="{% url uiformfield_new uiform.pk %}" class="button">Add another field</a>
+  </p>
+</div>
 {% endblock %}

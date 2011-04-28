@@ -29,7 +29,9 @@
 
   <body>
     <div id="main-container">
-      <h1><a href="{% url index %}">drchrono UI Forms</a></h1>
+      
+      <h1 id="logo"><a href="{% url index %}">drchrono UI Forms</a></h1>
+      
       <div id="top-menu" class="span-4">
         <ul>
           {% if user.is_authenticated %}
@@ -42,8 +44,14 @@
         </ul>
       </div>
 
-      {% block content-area %}
-      {% endblock %}
+      <div id="content-container">
+        {% block content-area %}
+        {% endblock %}
+      </div>
+      
+      <div id="footer">
+        <p>Completed by Thomas Shaddox</p>
+      </div>
       
     </div>
   </body>

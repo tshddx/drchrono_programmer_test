@@ -6,9 +6,47 @@ body {
 
 div#main-container {
     width: 800px;
-    padding: 4px 14px;
-    background-color: #fbfbfb;
     margin: 0 auto;
-    border-left: 1px solid #bbb;
-    border-right: 1px solid #bbb;
+    position: relative;
+}
+
+div#content-container {
+    background-color: #fbfbfb;
+    border: 1px solid #bbb;
+    padding: 4px 14px;
+}
+
+#top-menu {
+    position: absolute;
+    top: 0px;
+    right: 10px;
+}
+
+#logo a {
+    color: #333;
+    text-decoration: none;
+}
+
+a {
+    color: #46b;
+}
+
+a:visited {
+    color: #57c;
+}
+
+a.button {
+    background-color: #dfdff3;
+    color: #35a;
+    padding: 2px 6px;
+    border: 1px solid #79f;
+    text-decoration: none;
+}
+
+a.button:hover {
+    background-color: #efeff4;
+}
+
+div.ctrlHolder:hover {
+    background-color: #efefef;
 }
