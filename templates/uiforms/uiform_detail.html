@@ -20,12 +20,14 @@
     <span>Public link</span>
     <span class="help-text">Anyone will be able to view (but not edit) this UI Form at this URL.</span>
   </p>
-  <p class="public-link"><a href="{% url uiform_detail_public uiform.id %}">{% url uiform_detail_public uiform.id %}</a></p>
-  <p>
+  <p class="public-link"><a href="{{ uiform.get_public_url }}">{{ uiform.get_public_url }}</a></p>
+  <form method="POST" id="" action="{% url email_link %}" class="email-form">
+    {% csrf_token %}
     Email this link to a friend:
+    <input type="hidden" name="pk" value="{{ uiform.pk }}" />
     <input type="email" name="email" />
-    <input type="button" name="email-submit" value="Send email" />
-  </p>
+    <input type="submit" name="email-submit" id="email-submit" value="Send email" />
+  </form>
 </div>
 {% else %}
 <p>This UI Form was created by the user "{{ uiform.owner }}".</p>

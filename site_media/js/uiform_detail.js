@@ -42,4 +42,9 @@ $(function() {
                            });
                 }
             });
+
+        $('#email-submit').click(function(e) {
+                e.preventDefault();
+                alert("No email will actually be sent. The email_link function in views.py works, but requires and SMTP server and some settings filled out in settings.py");
+            });
     });

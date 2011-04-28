@@ -17,6 +17,10 @@ class UIForm(models.Model):
     def get_absolute_url(self):
         return ('uiform_detail', (), {'pk': self.id})
 
+    @models.permalink
+    def get_public_url(self):
+        return ('uiform_detail_public', (), {'pk': self.id})
+
     def fields(self):
         return self.uiformfield_set.all()
 

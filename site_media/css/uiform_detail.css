@@ -48,3 +48,7 @@ div.ctrlHolder:hover div.edit-delete {
 .fields-intro {
     margin-top: 1em;
 }
+
+.email-form {
+    margin-bottom: 0;
+}

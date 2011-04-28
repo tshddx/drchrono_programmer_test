@@ -6,8 +6,11 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth.views import login, logout
 from django.contrib.auth import login as userlogin
 from django.contrib.auth import authenticate
+from django.contrib.auth.decorators import login_required
 from annoying.decorators import render_to
+from annoying.utils import HttpResponseReload
 from django.views.generic import CreateView, UpdateView
+from django.core.mail import send_mail
 
 from uiforms.forms import *
 from uiforms.models import *
@@ -114,3 +117,15 @@ class UIFormCreateView(CreateView):
 
     def get_success_url(self):
         return reverse('dashboard')
+
+# This view won't work without some additional settings in settings.py, e.g. EMAIL_HOST and EMAIL_PORT.
+@login_required
+def email_link(request):
+    if request.method == 'POST':
+        form = request.user.uiform_set.get(pk=request.POST['pk'])
+        send_mail('%s has shared a UI Form with you!' % request.user,
+                  '%s has shared a UI Form with you! You can view the form here: %s' % (request.user, form.get_public_url),
+                  'us@ourcompany.tld',
+                  [request.POST['email']]
+                  )
+        return HttpResponseReload()
