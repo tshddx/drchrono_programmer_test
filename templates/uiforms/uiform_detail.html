@@ -10,12 +10,25 @@
 
 {% block content-area %}
 <h2>{{ uiform }}</h2>
+<div class="public-link">
+  <p>
+    <span>Public link</span>
+    <span class="help-text">Anyone will be able to view (but not edit) this UI Form at this URL.</span>
+  </p>
+  <p class="public-link">http://blah.bad</p>
+</div>
 <div class="field-list">
   <h3>Fields:</h3>
   <form method="POST" id="" action="" class="uniForm">
     <fieldset>
       {% for field in uiform.fields %}
-      <div class="ctrlHolder">{{ field.as_html }}</div>
+      <div class="ctrlHolder uiformfield">
+        <div class="edit-delete">
+          <a href="">edit</a>
+          <a href="">delete</a>
+        </div>
+        {{ field.as_html }}
+      </div>
       {% endfor %}
     </fieldset>
   </form>

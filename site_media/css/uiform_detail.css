@@ -2,3 +2,41 @@
     margin-left: 32px;
     margin-right: 32px;
 }
+
+div.public-link {
+    padding: 4px;
+    border: 1px solid silver;
+    width: 75%;
+    font-weight: bold;
+}
+
+div.public-link p {
+    margin-bottom: 2px;
+}
+
+p.public-link {
+    font-weight: normal;
+}
+
+.help-text {
+    color: gray;
+    margin-left: 1em;
+    font-size: 12px;
+    font-weight: normal;
+}
+
+div.uiformfield {
+    position: relative;
+}
+
+div.edit-delete {
+    display: none;
+    position: absolute;
+    right: 4px;
+    top: 4px;
+    font-size: 12px;
+}
+
+div.ctrlHolder:hover div.edit-delete {
+    display: block;
+}

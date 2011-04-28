@@ -2,6 +2,7 @@ body {
     background-color: #dadada;
     color: #333;
     margin-top: 0;
+    font-size: 14px;
 }
 
 div#main-container {
@@ -49,4 +50,20 @@ a.button:hover {
 
 div.ctrlHolder:hover {
     background-color: #efefef;
+}
+
+p {
+    margin-top: 0;
+}
+
+#footer {
+    margin-top: 1em;
+}
+
+form.uniForm, form {
+    margin-bottom: 1em;
+}
+
+.uniForm label {
+    cursor: auto !important;
 }

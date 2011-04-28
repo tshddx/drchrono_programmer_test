@@ -49,10 +49,6 @@ def uiform_detail(request, pk):
     uiform = request.user.uiform_set.get(pk=pk)
     return {'uiform': uiform}
 
-# @render_to('uiformfield_new.html')
-# def uiformfield_new(request, pk):
-#     parent_uiform = request.user.uiform_set.get(pk=pk)
-
 class UIFormFieldCreateView(CreateView):
     context_object_name = 'UI Form Field'
     template_name = 'uiformfield_new.html'
