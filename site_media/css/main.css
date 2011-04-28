@@ -58,6 +58,8 @@ p {
 
 #footer {
     margin-top: 1em;
+    font-size: 11px;
+    color: gray;
 }
 
 form.uniForm, form {
