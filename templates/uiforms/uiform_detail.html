@@ -14,36 +14,46 @@
 
 {% block content-area %}
 <h2>{{ uiform }}</h2>
+{% if not public %}
 <div class="public-link">
   <p>
     <span>Public link</span>
     <span class="help-text">Anyone will be able to view (but not edit) this UI Form at this URL.</span>
   </p>
-  <p class="public-link">http://blah.bad</p>
+  <p class="public-link"><a href="{% url uiform_detail_public uiform.id %}">{% url uiform_detail_public uiform.id %}</a></p>
   <p>
     Email this link to a friend:
     <input type="email" name="email" />
     <input type="button" name="email-submit" value="Send email" />
   </p>
 </div>
+{% else %}
+<p>This UI Form was created by the user "{{ uiform.owner }}".</p>
+{% endif %}
 <hr />
 <div class="field-list">
+  {% if not public %}
   <p class="fields-intro">This is a live preview of your UI form fields. You can point to each field to edit or delete it, or add another field at the bottom.</p>
+  {% endif %}
   <form method="POST" id="" action="" class="uniForm">
     <fieldset>
       {% for field in uiform.fields %}
       <div class="ctrlHolder uiformfield" id="{{ field.id }}">
+        {% if not public %}
         <div class="edit-delete">
           <a href="{% url uiformfield_edit formpk=uiform.pk fieldpk=field.id %}" class="edit-link">edit</a>
           <a href="#" class="delete-link">delete</a>
         </div>
+        {% endif %}
         {{ field.as_html }}
       </div>
       {% endfor %}
     </fieldset>
   </form>
+  {% if not public %}
   <p>
     <a href="{% url uiformfield_new uiform.pk %}" class="button">Add another field</a>
   </p>
+  {% endif %}
 </div>
 {% endblock %}

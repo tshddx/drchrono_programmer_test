@@ -46,13 +46,13 @@ def dashboard(request):
     return {'uiforms': uiforms}
 
 @render_to('uiform_detail.html')
-def uiform_detail(request, pk):
+def uiform_detail(request, pk, public):
     uiform = request.user.uiform_set.get(pk=pk)
     if request.is_ajax():
         field = uiform.fields().get(id=request.POST['id'])
         field.delete()
         return HttpResponse("success")
-    return {'uiform': uiform}
+    return {'uiform': uiform, 'public': public}
 
 class UIFormFieldCreateView(CreateView):
     context_object_name = 'UI Form Field'
